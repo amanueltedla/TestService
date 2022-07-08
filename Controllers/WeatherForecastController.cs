@@ -35,5 +35,18 @@ namespace TestService.Controllers
             })
             .ToArray();
         }
+
+        [HttpPost]
+        public IEnumerable<WeatherForecast> Post()
+        {
+            var rng = new Random();
+            return Enumerable.Range(1, 4).Select(index => new WeatherForecast
+            {
+                Date = DateTime.Now.AddDays(index),
+                TemperatureC = rng.Next(-20, 25),
+                Summary = Summaries[rng.Next(Summaries.Length)]
+            })
+            .ToArray();
+        }
     }
 }
